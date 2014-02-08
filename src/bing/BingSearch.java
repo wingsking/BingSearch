@@ -24,7 +24,8 @@ public class BingSearch {
 		//get parameters from command line
 		String accountKey = args[0]; //"cnLsEsvYTSd+XBWkE4lO7z02Wgh3W14UTAwgJ/JURdc="
 		double preset = Double.parseDouble(args[1]);								
-		double precision = preset;						
+		double precision = preset;		
+		//need to encode query with URL-style
 		String query = parseQuery(args[2], "encode"); //"gates microsoft" -> "gates+microsoft"
 		Scanner scan = new Scanner(System.in);
 		
@@ -38,50 +39,51 @@ public class BingSearch {
 			// the number of results that are relevant
 			int count = 0;
 				
+			//the content returned by Bing is in JSON format
 			JSONObject obj = new JSONObject(content);
 				
 			//an array of results returned by bing search
 			JSONArray objs = obj.getJSONObject("d").getJSONArray("results");
 			//total number of results returned by bing
-		    int n = objs.length();
-		    System.out.println("Total no of results : " + n);
+		    	int n = objs.length();
+		    	System.out.println("Total no of results : " + n);
 			
 			//if less than 10 results returned, terminate
 			if(n<10)
 				return;
 			
-		    System.out.println("Bing Search Results: \n=========================");
+		    	System.out.println("Bing Search Results: \n=========================");
 			
-		    //store all results into ArrayList<Result>
-		    for (int i = 0; i < n; ++i) {
-			     JSONObject rs = objs.getJSONObject(i);
-			     results.add(new Result(rs.getString("Url"), rs.getString("Title"), rs.getString("Description")));
+		    	//store all results into ArrayList<Result>
+		    	for (int i = 0; i < n; ++i) {
+			     	JSONObject rs = objs.getJSONObject(i);
+			     	results.add(new Result(rs.getString("Url"), rs.getString("Title"), rs.getString("Description")));
 			     
-			     //display result to user
-			     System.out.println("Result " + (i + 1) );
-			     results.get(i).print();
+			     	//display result to user
+			     	System.out.println("Result " + (i + 1) );
+			     	results.get(i).print();
 			      
-			     //user choose whether this result is relevant
-			     System.out.print("Relevant (Y/N)?");
-			     String bool = scan.next();
+			     	//user choose whether this result is relevant
+			     	System.out.print("Relevant (Y/N)?");
+				String bool = scan.next();
 			     
-			     //the result is relevant
-			     if(bool.toLowerCase().equals("y")){
+				   //the result is relevant
+			   	if(bool.toLowerCase().equals("y")){
 			   	  	results.get(i).setRevelant(true);
 			   	  	count++;
-			     }
+			     	}
 		      
-		    }
+		    	}
 		    
 			//if there is no relevant result, terminate
 			if(count == 0)
 				return;
 			
-		    precision = (double)count/n;
+		    	precision = (double)count/n;
 			
 			//if desired precision not met
-		    if((precision - preset) < -0.000001){	    	
-		    	System.out.println("=========================\nFEEDBACK SUMMARY"
+		    	if((precision - preset) < -0.000001){	    	
+		    		System.out.println("=========================\nFEEDBACK SUMMARY"
 							+ "\nQuery: " + query
 							+ "\nPrecision: " + precision
 							+ "\nStill below the desired precision of " + preset
@@ -102,19 +104,19 @@ public class BingSearch {
 		*/		
 		
 		
-		    }else{
-		    	System.out.println("=========================\nFEEDBACK SUMMARY"
+		    	}else{
+		    		System.out.println("=========================\nFEEDBACK SUMMARY"
 						+ "\nQuery: " + query
 						+ "\nPrecision: " + precision
 						+ "\nDesired precision reached, done");
-		    	return;
-		    }
+		    		return;
+		    	}
 	    
 		}
 	
 	}
 
-	//encode the query to make it url-acceptable
+	//encode the query to make it url-acceptable, or decode it
 	public static String parseQuery(String s, String t){
 		if(t.equals("encode")){
 			if(s.contains(" "))
@@ -126,6 +128,7 @@ public class BingSearch {
 		return s;
 	}
 	
+	//connect to Bing and get return content as a string
 	public static String getContent(String accountKey, double precision, String query) throws IOException {
 
 		String bingUrl = "https://api.datamarket.azure.com/Bing/Search/Web?$top=10&$format=json&Query=%27"+query+"%27";
@@ -149,6 +152,8 @@ public class BingSearch {
 
 	}
 	
+	
+	//print metadata before each search
 	public static void printMeta(String accountKey, String query, double precision, String url){
 		System.out.println("Parameters:\nClient key\t= " + accountKey 
 				+ "\nQuery\t\t= " + query
@@ -158,7 +163,7 @@ public class BingSearch {
 	}
 	
 	
-	//implementation
+	//query expansion function
 	public static String[] augmentQuery(ArrayList<Result> r){
 		return new String[]{};
 	}

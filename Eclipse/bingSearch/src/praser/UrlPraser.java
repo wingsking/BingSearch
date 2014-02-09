@@ -1,0 +1,75 @@
+package praser;
+
+import java.util.Arrays;
+
+import bing.*;
+
+import org.htmlparser.*;
+import org.htmlparser.beans.*;
+import org.htmlparser.filters.TagNameFilter;
+import org.htmlparser.tags.*;
+import org.htmlparser.util.*;
+
+public class UrlPraser{
+	   private String getNewsContent(NodeFilter newsContentFilter, Parser parser) {
+	        String content = null;
+	        StringBuilder builder = new StringBuilder();
+
+
+	        try {
+	            parser.setEncoding("utf-8");
+	            NodeList newsContentList = (NodeList) parser.parse(newsContentFilter);
+	            BodyTag newsContenTag = (BodyTag) newsContentList.elementAt(0);
+	            builder = builder.append(newsContenTag.getStringText());
+	            
+	            content = builder.toString();  //转换为String 类型。
+	            if (content != null) {
+	                parser.reset();
+
+	                parser = Parser.createParser(content, "utf-8");
+	                StringBean sb = new StringBean();
+	                sb.setCollapse(true);
+	                parser.visitAllNodesWith(sb);
+	                content = sb.getStrings();
+
+
+	            } else {
+	               //System.out.println("no content!");
+	            }
+
+	        } catch (ParserException ex) {
+	            //Logger.getLogger(ParsePage.class.getName()).log(Level.SEVERE, null, ex);
+	        }
+
+	        return content;
+	    }
+	
+	
+    public String parser(String url) {
+    	String newsContent = "";
+        try {
+            Parser parser = new Parser(url);
+            NodeFilter contentFilter= new TagNameFilter("body");
+            
+            parser.reset();   //reset praser after every prasering!
+            newsContent = getNewsContent(contentFilter, parser);
+
+            
+            
+        } catch (ParserException ex) {
+           // Logger.getLogger(ParsePage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        catch (NullPointerException e){
+            
+        }
+        return newsContent;
+    }
+    
+    
+    public static void main(String[] args){
+    	//testing the url praser and word separator
+    	UrlPraser praser = new UrlPraser();
+    	String content = praser.parser("http://en.wikipedia.org/wiki/Bill_Gates");
+    	System.out.println(Arrays.toString(content.split("\\W+")));
+    }
+}

@@ -1,0 +1,76 @@
+package expansionAlgorithm.rocchio;
+
+import indexer.Posting;
+import indexer.PostingNode;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.TreeMap;
+
+import expansionAlgorithm.rocchio.sortAlgorithm.*;
+import bing.Result;
+
+public class Rocchio {
+	
+	/**
+	 * these are the three rocchio controlling parameter
+	 * a controls the old query
+	 * B controls the relevant docs
+	 * y controls the non-relevant docs
+	 * taken from  Modern Information Retrieval: A Brief Overview, Chapter 9
+	 */
+	private double a = 1;
+	private double B = 0.75;
+	private double y = 0.15;
+	
+	
+	/**
+	 * 
+	 * @param index
+	 * @param docs
+	 * @param queryTerms
+	 * @return
+	 * 
+	 * this method will calculate the best two terms to expand query
+	 * ret[0] the highest score term
+	 * ret[1] second highest score term
+	 */
+	public String[] calBestTwoTerm(HashMap<String, Posting> index, String query){
+		
+		String[] queryArr = query.split("+");
+		HashSet<String> queryTerms = new HashSet<String>();
+		for(String term : queryArr)
+			queryTerms.add(term);
+		
+		// this map stores the calculated term, only storing two highest terms
+		TreeMap<String,Integer> termScore = new TreeMap<String,Integer>();
+		
+		
+		// calculate the score one term at a time, only storing the two highest score
+		Iterator<Map.Entry<String, Posting>> it = index.entrySet()
+				.iterator();
+		while (it.hasNext()) {
+			Map.Entry<String, Posting> pairs = (Map.Entry<String, Posting>) it
+					.next();
+			String key = pairs.getKey();
+			ArrayList<PostingNode> posting = pairs.getValue().getPosting();
+			
+			Double score = 0.0;
+			SortAlgorithm sa = new SortAlgorithm();
+			
+			for(PostingNode node : posting){
+				if(node.getDoc().getRelevant()){
+					score += 
+				}
+			}
+			
+
+		}
+		
+	}
+	
+	
+}

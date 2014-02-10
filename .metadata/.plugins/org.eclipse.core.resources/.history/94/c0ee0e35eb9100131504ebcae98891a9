@@ -1,0 +1,14 @@
+package indexer;
+import java.util.*;
+import bing.*;
+
+public class Posting {
+	private HashMap<Result,Integer> posting;
+
+	public Posting() {
+		posting = new HashMap<Result,Integer>();
+	}
+	
+	
+	
+}

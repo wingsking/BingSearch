@@ -1,0 +1,5 @@
+package sortingAlgorithm;
+
+public interface Algotithm {
+
+}

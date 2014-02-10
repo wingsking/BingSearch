@@ -1,0 +1,11 @@
+package sortingAlgorithm;
+
+import indexer.Posting;
+
+import java.util.HashMap;
+
+public abstract class Algotithm {
+	public abstract String[] calBestTwoTerm(HashMap<String, Posting> index, String[] queryTerms);
+	
+	
+}

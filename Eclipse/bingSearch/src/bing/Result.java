@@ -3,14 +3,35 @@ package bing;
 public class Result {
 	private String url, title, description;
 	private boolean relevant;
+	private Integer length;
 	
-	Result(String u, String t, String d){
+	public Result(String u, String t, String d){
 		url = u;
 		title = t;
 		description = d;
 		relevant = false;
 	}
 	
+	
+	
+	public void setRelevant(boolean relevant) {
+		this.relevant = relevant;
+	}
+
+
+
+	public Integer getLength() {
+		return length;
+	}
+
+
+
+	public void setLength(Integer length) {
+		this.length = length;
+	}
+
+
+
 	public void setTitle(String t){
 		title = t;
 	}
@@ -33,10 +54,6 @@ public class Result {
 	
 	public String getUrl(){
 		return url;
-	}
-	
-	public void setRevelant(boolean b){
-		relevant = b;
 	}
 	
 	public boolean getRelevant(){

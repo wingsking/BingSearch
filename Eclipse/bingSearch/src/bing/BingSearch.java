@@ -69,7 +69,7 @@ public class BingSearch {
 			     
 				   //the result is relevant
 			   	if(bool.toLowerCase().equals("y")){
-			   	  	results.get(i).setRevelant(true);
+			   	  	results.get(i).setRelevant(true);
 			   	  	count++;
 			     	}
 		      

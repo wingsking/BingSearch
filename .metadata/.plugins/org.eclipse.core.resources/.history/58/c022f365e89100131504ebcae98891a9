@@ -1,0 +1,10 @@
+package indexer;
+
+import java.util.*;
+import bing.*;
+
+public class IndexCreator {
+	public static HashMap<String,Posting> createIndex(ArrayList<Result> resultList){
+		
+	}
+}

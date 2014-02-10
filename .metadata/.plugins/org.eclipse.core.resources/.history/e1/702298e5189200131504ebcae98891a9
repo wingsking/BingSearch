@@ -36,11 +36,8 @@ public class ProximityEval {
 		String[] expandChanged = new String[] { expand[1], expand[0], expand[1] };
 
 		for (int i = expandChanged.length - 1; i >= 0; i--) {
-			Double weight = 0.0;
 			for (int j = 0; j < queryList.size(); j++) {
-				//calculate (e,q)
-				
-				//calcullate (q,e)
+
 			}
 		}
 	}

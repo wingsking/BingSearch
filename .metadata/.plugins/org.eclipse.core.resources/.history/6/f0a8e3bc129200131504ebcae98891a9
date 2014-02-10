@@ -107,10 +107,10 @@ public class UrlPraser{
     	UrlPraser praser = new UrlPraser();
     	Result result = new Result("http://en.wikipedia.org/wiki/Bill_Gates","","");
     	
-    	HashMap<String,ArrayList<Integer>> content = praser.getWordList(result);
-        Iterator<Map.Entry<String,ArrayList<Integer>>> it = content.entrySet().iterator();
+    	HashMap<String,Integer> content = praser.getWordList(result);
+        Iterator<Map.Entry<String,Integer>> it = content.entrySet().iterator();
         while (it.hasNext()) {
-            Map.Entry<String,ArrayList<Integer>> pairs = (Map.Entry<String,ArrayList<Integer>>)it.next();
+            Map.Entry<String,Integer> pairs = (Map.Entry<String,Integer>)it.next();
             System.out.println(pairs.getKey() + " = " + pairs.getValue());
             it.remove(); // avoids a ConcurrentModificationException
         }

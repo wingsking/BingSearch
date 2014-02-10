@@ -21,11 +21,17 @@ import org.json.*;
 public class BingSearch {
 
 	public static void main(String[] args) throws IOException , JSONException{
-		//get parameters from command line
+		/*get parameters from command line
 		String accountKey = args[0]; //"cnLsEsvYTSd+XBWkE4lO7z02Wgh3W14UTAwgJ/JURdc="
 		double preset = Double.parseDouble(args[1]);								
 		double precision = preset;
 		String query = args[2];		
+		*/
+		
+		String accountKey = "cnLsEsvYTSd+XBWkE4lO7z02Wgh3W14UTAwgJ/JURdc=";
+		double preset = Double.parseDouble("0.9");
+		double precision = preset;
+		String query = "gates";	//change to any query you like	
 		
 		Scanner scan = new Scanner(System.in);
 	

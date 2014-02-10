@@ -13,7 +13,6 @@ public class PostingNode {
 		this.doc = doc;
 		this.frequency = frequency;
 	}
-	
 	public Result getDoc() {
 		return doc;
 	}

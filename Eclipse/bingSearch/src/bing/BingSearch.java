@@ -24,10 +24,11 @@ public class BingSearch {
 		//get parameters from command line
 		String accountKey = args[0]; //"cnLsEsvYTSd+XBWkE4lO7z02Wgh3W14UTAwgJ/JURdc="
 		double preset = Double.parseDouble(args[1]);								
-		double precision = preset;		
-		//need to encode query with URL-style
-		String query = parseQuery(args[2], "encode"); //"gates microsoft" -> "gates+microsoft"
+		double precision = preset;
+		String query = args[2];		
+		
 		Scanner scan = new Scanner(System.in);
+	
 		
 		while(true){
 			//get content from bing
@@ -101,7 +102,7 @@ public class BingSearch {
 		*		
 		*		//construct new query
 		*		//query += augments
-		*/		
+		*/	
 		
 		
 		    	}else{
@@ -120,18 +121,20 @@ public class BingSearch {
 	public static String parseQuery(String s, String t){
 		if(t.equals("encode")){
 			if(s.contains(" "))
-				return s.replace(" ", "+");
+				return s.replace(" ", "%20");
 		}else if(t.equals("decode")){
-			if(s.contains("+"))
-				return s.replace("+", " ");
+			if(s.contains("%20"))
+				return s.replace("%20", " ");
 		}
 		return s;
 	}
 	
 	//connect to Bing and get return content as a string
 	public static String getContent(String accountKey, double precision, String query) throws IOException {
+		//need to encode query with URL-style
+		String encodeQuery = parseQuery(query, "encode"); //"gates microsoft" -> "gates%20microsoft"
 
-		String bingUrl = "https://api.datamarket.azure.com/Bing/Search/Web?$top=10&$format=json&Query=%27"+query+"%27";
+		String bingUrl = "https://api.datamarket.azure.com/Bing/Search/Web?$top=10&$format=json&Query=%27"+encodeQuery+"%27";
 				
 				
 		byte[] accountKeyBytes = Base64.encodeBase64((accountKey + ":" + accountKey).getBytes());

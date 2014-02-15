@@ -80,7 +80,7 @@ public class UrlPraser{
     	HashMap<String,ArrayList<Integer>> ret = new HashMap<String,ArrayList<Integer>>();
     	
     	for(int i=0;i<wordArr.length;i++){
-    		String str = wordArr[i].toLowerCase();
+    		String str = wordArr[i];
     		//don't care single digit, they might be chapter number etc.
     		//don't care single letter either, because they are meaningless
     		if(!str.matches("\\d{1,2}|\\w{1}")){

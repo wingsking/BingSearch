@@ -8,10 +8,12 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.TreeMap;
 
-import expansionAlgorithm.rocchio.sortAlgorithm.*;
 import bing.Result;
+import expansionAlgorithm.rocchio.sortAlgorithm.BM25;
+import expansionAlgorithm.rocchio.sortAlgorithm.MaximumTf;
+import expansionAlgorithm.rocchio.sortAlgorithm.NormalTf_Idf;
+import expansionAlgorithm.rocchio.sortAlgorithm.SortAlgorithm;
 
 public class Rocchio {
 
@@ -89,7 +91,7 @@ public class Rocchio {
 							termScore[1] = score;
 							ret[1] = key;
 						}
-						System.out.println(key+":"+score);
+						//System.out.println(key+":"+score);
 					}
 				}
 
@@ -149,7 +151,7 @@ public class Rocchio {
 						ret[1] = key;
 					}
 				}
-				System.out.println(key+":"+score);
+				//System.out.println(key+":"+score);
 			}
 
 		}

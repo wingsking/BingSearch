@@ -94,6 +94,18 @@ public class UrlPraser{
     		}
     	}
     	
+    	//mark the maximum tf, in order for the calculation of maxTf algorithm
+    	Iterator<Map.Entry<String, ArrayList<Integer>>> it = ret.entrySet()
+				.iterator();
+    	int maxTf = 0;
+		while (it.hasNext()) {
+			Map.Entry<String, ArrayList<Integer>> pairs = (Map.Entry<String, ArrayList<Integer>>) it
+					.next();
+			ArrayList<Integer> posList = pairs.getValue();
+			maxTf = Math.max(maxTf, posList.size());
+		}
+		result.setMaxTf(maxTf);
+    	
     	return ret;
     }
     

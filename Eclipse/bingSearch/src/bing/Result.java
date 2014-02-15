@@ -5,6 +5,7 @@ public class Result {
 	private boolean relevant;
 	private Integer length;
 	private double normalizationSUm=0.0;
+	private int maxTf;
 	
 	public Result(String u, String t, String d){
 		url = u;
@@ -17,6 +18,22 @@ public class Result {
 	
 	
 	
+	public int getMaxTf() {
+		return maxTf;
+	}
+
+
+
+
+
+	public void setMaxTf(int maxTf) {
+		this.maxTf = maxTf;
+	}
+
+
+
+
+
 	public double getNormalizationSUm() {
 		return normalizationSUm;
 	}

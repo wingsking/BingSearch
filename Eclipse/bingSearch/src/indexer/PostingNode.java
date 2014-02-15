@@ -8,6 +8,8 @@ public class PostingNode {
 	private Result doc;
 	private Integer frequency;
 	private ArrayList<Integer> posList;
+	private double rawScore; //this variable is only useful in TF_IDF like algorithm
+	
 	
 	
 	
@@ -27,6 +29,18 @@ public class PostingNode {
 	}
 	
 	
+	
+	
+	public double getRawScore() {
+		return rawScore;
+	}
+
+
+	public void setRawScore(double rawScore) {
+		this.rawScore = rawScore;
+	}
+
+
 	public ArrayList<Integer> getPosList() {
 		return posList;
 	}

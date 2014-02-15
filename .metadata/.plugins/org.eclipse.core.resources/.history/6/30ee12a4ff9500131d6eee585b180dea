@@ -1,0 +1,139 @@
+package expansionAlgorithm.termProximity;
+
+import indexer.Posting;
+import indexer.PostingNode;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.LinkedList;
+
+import bing.Result;
+
+public class ProximityEval {
+
+	private static final double k1 = 1.2; // for normalizing the length
+	private static final double b = 0.75;
+
+	/**
+	 * this method return the best ordered query
+	 */
+	public ArrayList<String> orderExpanedQuery(HashMap<String, Posting> index,
+			String[] expand, String query, ArrayList<Result> results) {
+		// storing the original query, use linked list to easily insert expanded
+		// terms
+		LinkedList<String> queryList = new LinkedList<String>(
+				Arrays.asList(query.split("\\+")));
+		/**
+		 * we will examine for every term in the expand term list, consider the
+		 * following: (e1,q1),(q1,e1),(e1,q2),(q2,e1)... which pair is the
+		 * highest? we mark down the highest score, then we add the e1 to the
+		 * position denoted by the highest score pair.
+		 * 
+		 * We will check the highest score for e1 and e2 separately, don't
+		 * insert first, we compare the two highest score, only adding the
+		 * highest score term and expanding the query, then we now expand
+		 * another term by calculating the the highest score position from the
+		 * expanded query, the reason is follows:
+		 * 
+		 * Because in our algorithm, w(e,q)= 1/(|e-q|)^2 when |e-q|<=5 so if e1
+		 * is always length 6 from q1, it will be 0; but some time, e1,e0,q1;
+		 * after inserting e0 in between, it will be the best otherwise, we
+		 * would just adding e1 to the end, so it becomes q1,e1,e0, not good.
+		 * 
+		 * Note that we also need to "normalize" the doc's length, otherwise we
+		 * will favor the doc which is long and contains many this pair, so,
+		 * similar to BM25, we use the following formula: W_Normalized(a,b) =
+		 * (k1+1)*(sum(w(a,b)))/(K+sum(w(a,b)))
+		 * 
+		 * K here, like in BM25, is K = k1*(1-b+b*docLength/avgLeng）
+		 * 
+		 */
+
+		int highest = 0; // marking the term which gets the highest score when
+							// consider individually
+		double highest_score = 0.0;
+		int highest_Add_Pos = 0; // this denotes the position the highest score
+									// elements should added
+		
+		int avgDocLength = 0;
+		int lengthSum = 0;
+		for (Result doc : results) {
+			lengthSum += doc.getLength();
+		}
+		avgDocLength = lengthSum / results.size();  //calculate the average doc length, for normalize
+		
+		
+		
+		for (int i = 0; i < expand.length; i++) {
+			Double weight = 0.0;
+			int shouldAddTo = 0; // this denote the position this term should be
+									// added
+			for (int j = 0; j < queryList.size(); j++) {
+				// the list of docs containing the expanding term
+				ArrayList<PostingNode> expandDocList = index.get(expand[i])
+						.getPosting();
+				// the list of docs containing the query term
+				ArrayList<PostingNode> queryDocList = index.get(
+						queryList.get(j)).getPosting();
+
+				for (PostingNode queryDoc : queryDocList) {
+					PostingNode expandDoc = null;
+					// find the doc which has both the query term and the expand
+					// term
+					for (PostingNode exDoc : expandDocList) {
+						if (queryDoc.getDoc() == exDoc.getDoc())
+							expandDoc = exDoc;
+					}
+
+					if (expandDoc != null) {
+						// we only calculate the score when both query term and
+						// expand term
+						// is present, otherwise the score is 0, so don't bother
+
+						// calculate (e,q)
+						double eqScore = calProxiScore(expandDoc,queryDoc,avgDocLength);
+
+						// calcullate (q,e)
+						double qeScore = calProxiScore(queryDoc,expandDoc,avgDocLength);
+					}
+
+				}
+
+			}
+		}
+	}
+
+	// correspond to the pair (a,b)
+	private double calProxiScore(PostingNode a, PostingNode b, int avgDocLength) {
+		ArrayList<Integer> aPosList = a.getPosList();
+		ArrayList<Integer> bPosList = b.getPosList();
+		
+		int i=0,j=0;
+		double sum = 0.0;
+		
+		while(i<aPosList.size() && j<bPosList.size()){
+			int diff = bPosList.get(j) - aPosList.get(i); //a in front of b
+			
+			if(diff>0 && diff<=5){
+				//in range, cal culate score
+				sum+= 1/(diff*diff);
+				i++;
+			}else if(diff<=0){
+				//now b is in front of a, so b++
+				j++;
+			}else{
+				//a is 5 words+ in front of b, so a++
+				i++;
+			}
+		}
+		
+		//return the normalized score
+		return (k1+1)*(sum/(K(avgDocLength, a.getDoc().getLength())+sum));
+
+	}
+
+	private double K(int avgLeng, int docLength) {
+		return k1 * ((1 - b) + b * docLength / avgLeng);
+	}
+}

@@ -20,10 +20,10 @@ public class Rocchio {
 	 * query B controls the relevant docs y controls the non-relevant docs taken
 	 * from Modern Information Retrieval: A Brief Overview, Chapter 9
 	 */
-	private double a = 1; // we don't use this, because we never delete query
+	private static final double a = 1; // we don't use this, because we never delete query
 							// term
-	private double B = 0.75;
-	private double y = 0.15;
+	private static final double B = 0.75;
+	private static final double y = 0.15;
 
 	/**
 	 * 
@@ -35,7 +35,7 @@ public class Rocchio {
 	 *         this method will calculate the best two terms to expand query
 	 *         ret[0] the second highest score term ret[1] highest score term
 	 */
-	public String[] calBestTwoTerm(HashMap<String, Posting> index, String query) {
+	public static String[] calBestTwoTerm(HashMap<String, Posting> index, String query, ArrayList<Result> results) {
 
 		String[] queryArr = query.split("\\+");
 		HashSet<String> queryTerms = new HashSet<String>();
@@ -48,7 +48,7 @@ public class Rocchio {
 				Double.NEGATIVE_INFINITY };
 		String[] ret = new String[] { "", "" };
 
-		SortAlgorithm sa = new BM25();
+		SortAlgorithm sa = new NormalTf_Idf();
 
 		if (sa instanceof BM25) {
 			/**
@@ -70,9 +70,9 @@ public class Rocchio {
 				if (!queryTerms.contains(key)) {
 					for (PostingNode node : posting) {
 						if (node.getDoc().getRelevant()) {
-							score += B * sa.calScore(index, key, node);
+							score += B * sa.calScore(index, key, node, results);
 						} else {
-							score -= y * sa.calScore(index, key, node);
+							score -= y * sa.calScore(index, key, node, results);
 						}
 					}
 
@@ -89,6 +89,7 @@ public class Rocchio {
 							termScore[1] = score;
 							ret[1] = key;
 						}
+						System.out.println(key+":"+score);
 					}
 				}
 
@@ -109,7 +110,7 @@ public class Rocchio {
 				ArrayList<PostingNode> posting = pairs.getValue().getPosting();
 
 				for (PostingNode node : posting) {
-					node.setRawScore(sa.calScore(index, key, node));
+					node.setRawScore(sa.calScore(index, key, node, results));
 				}
 			}
 
@@ -117,7 +118,7 @@ public class Rocchio {
 			// and storing the top 2 terms
 			Iterator<Map.Entry<String, Posting>> it2 = index.entrySet()
 					.iterator();
-			while (it.hasNext()) {
+			while (it2.hasNext()) {
 				Map.Entry<String, Posting> pairs = (Map.Entry<String, Posting>) it2
 						.next();
 				String key = pairs.getKey();
@@ -148,6 +149,7 @@ public class Rocchio {
 						ret[1] = key;
 					}
 				}
+				System.out.println(key+":"+score);
 			}
 
 		}

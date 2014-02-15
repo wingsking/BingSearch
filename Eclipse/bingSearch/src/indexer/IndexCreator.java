@@ -62,7 +62,7 @@ public class IndexCreator {
 			stopWordSet.add(str);
 	}
 
-	public HashMap<String, Posting> createIndex(ArrayList<Result> resultList) {
+	public static HashMap<String, Posting> createIndex(ArrayList<Result> resultList) {
 
 		HashMap<String, Posting> ret = new HashMap<String, Posting>();
 

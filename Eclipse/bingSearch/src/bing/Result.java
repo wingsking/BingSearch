@@ -4,7 +4,7 @@ public class Result {
 	private String url, title, description;
 	private boolean relevant;
 	private Integer length;
-	private double normalizationSUm;
+	private double normalizationSUm=0.0;
 	
 	public Result(String u, String t, String d){
 		url = u;

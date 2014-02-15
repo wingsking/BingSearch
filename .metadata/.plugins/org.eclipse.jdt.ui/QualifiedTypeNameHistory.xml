@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="org.htmlparser.util.NodeList"/>
+<fullyQualifiedTypeName name="org.htmlparser.tags.BodyTag"/>
+<fullyQualifiedTypeName name="org.htmlparser.beans.StringBean"/>
+<fullyQualifiedTypeName name="org.htmlparser.filters.TagNameFilter"/>
+<fullyQualifiedTypeName name="java.util.HashMap"/>
+<fullyQualifiedTypeName name="java.util.Iterator"/>
+<fullyQualifiedTypeName name="java.util.Map"/>
+<fullyQualifiedTypeName name="praser.UrlPraser"/>
+<fullyQualifiedTypeName name="java.util.HashSet"/>
+<fullyQualifiedTypeName name="java.util.TreeMap"/>
+<fullyQualifiedTypeName name="expansionAlgorithm.rocchio.sortAlgorithm.SortAlgorithm"/>
+<fullyQualifiedTypeName name="bing.Result"/>
+<fullyQualifiedTypeName name="indexer.PostingNode"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="java.util.LinkedList"/>
+<fullyQualifiedTypeName name="java.util.Arrays"/>
+</qualifiedTypeNameHistroy>

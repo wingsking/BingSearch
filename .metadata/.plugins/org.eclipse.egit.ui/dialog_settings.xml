@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item value="true" key="CommitDialog.showUntracked"/>
+	<list key="CommitDialog.authorValues">
+		<item value="kevin.cz.lian@gmail.com &lt;kevin.cz.lian@gmail.com&gt;"/>
+	</list>
+	<list key="CommitDialog.committerValues">
+		<item value="kevin.cz.lian@gmail.com &lt;kevin.cz.lian@gmail.com&gt;"/>
+	</list>
+	<section name="GitCommitMessageComponent">
+	</section>
+	<section name="org.eclipse.egit.ui.internal.dialogs.MergeTargetSelectionDialog.dialogBounds">
+		<item value="613" key="DIALOG_WIDTH"/>
+		<item value="0" key="DIALOG_Y_ORIGIN"/>
+		<item value="462" key="DIALOG_X_ORIGIN"/>
+		<item value="706" key="DIALOG_HEIGHT"/>
+		<item value="1|Ubuntu|11.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
+	</section>
+	<section name="org.eclipse.egit.ui.internal.pull.PullResultDialog.dialogBounds">
+		<item value="629" key="DIALOG_WIDTH"/>
+		<item value="250" key="DIALOG_Y_ORIGIN"/>
+		<item value="454" key="DIALOG_X_ORIGIN"/>
+		<item value="303" key="DIALOG_HEIGHT"/>
+		<item value="1|Ubuntu|11.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
+	</section>
+	<section name="org.eclipse.egit.ui.internal.merge.MergeResultDialog.dialogBounds">
+		<item value="908" key="DIALOG_WIDTH"/>
+		<item value="304" key="DIALOG_Y_ORIGIN"/>
+		<item value="314" key="DIALOG_X_ORIGIN"/>
+		<item value="223" key="DIALOG_HEIGHT"/>
+		<item value="1|Ubuntu|11.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
+	</section>
+	<section name="org.eclipse.egit.ui.internal.push.PushResultDialog.dialogBounds">
+		<item value="652" key="DIALOG_WIDTH"/>
+		<item value="148" key="DIALOG_Y_ORIGIN"/>
+		<item value="442" key="DIALOG_X_ORIGIN"/>
+		<item value="456" key="DIALOG_HEIGHT"/>
+		<item value="1|Ubuntu|11.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
+	</section>
+</section>

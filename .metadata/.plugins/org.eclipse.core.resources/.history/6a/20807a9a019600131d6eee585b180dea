@@ -1,0 +1,13 @@
+package expansionAlgorithm;
+
+import indexer.Posting;
+
+import java.util.HashMap;
+
+public class Algotithm {
+	public static String expandQuery(HashMap<String, Posting> index, String[] queryTerms){
+		
+	}
+	
+	
+}

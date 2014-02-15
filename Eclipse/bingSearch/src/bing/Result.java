@@ -4,6 +4,7 @@ public class Result {
 	private String url, title, description;
 	private boolean relevant;
 	private Integer length;
+	private double normalizationSUm=0.0;
 	
 	public Result(String u, String t, String d){
 		url = u;
@@ -14,6 +15,24 @@ public class Result {
 	
 	
 	
+	
+	
+	public double getNormalizationSUm() {
+		return normalizationSUm;
+	}
+
+
+
+
+
+	public void setNormalizationSUm(double normalizationSUm) {
+		this.normalizationSUm = normalizationSUm;
+	}
+
+
+
+
+
 	public void setRelevant(boolean relevant) {
 		this.relevant = relevant;
 	}

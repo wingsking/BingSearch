@@ -1,0 +1,14 @@
+package expansionAlgorithm.termProximity;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
+
+public class ProximityEval {
+	/**
+	 * this method return the best ordered query
+	 */
+	public ArrayList<String> orderExpanedQuery(String[] expand, String query){
+		// storing the original query, use linked list to easily insert expanded terms
+		LinkedList<String> queryList = new LinkedList<String>(query.split("[+]"));
+	}
+}

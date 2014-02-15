@@ -1,5 +1,6 @@
 package praser;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -69,23 +70,26 @@ public class UrlPraser{
     }
     
     //this method will generate the wordList for a doc
-    public HashMap<String,Integer> getWordList(Result result){
+    public HashMap<String,ArrayList<Integer>> getWordList(Result result){
     	String content = parser(result.getUrl());
     	String[] wordArr = content.split("\\W+");
     	//storing this doc's length
     	result.setLength(wordArr.length);
     	
     	//now generate the word list
-    	HashMap<String,Integer> ret = new HashMap<String,Integer>();
+    	HashMap<String,ArrayList<Integer>> ret = new HashMap<String,ArrayList<Integer>>();
     	
-    	for(String str : wordArr){
+    	for(int i=0;i<wordArr.length;i++){
+    		String str = wordArr[i];
     		//don't care single digit, they might be chapter number etc.
     		//don't care single letter either, because they are meaningless
     		if(!str.matches("\\d{1,2}|\\w{1}")){
     			if(ret.containsKey(str)){
-    				ret.put(str, ret.get(str)+1);
+    				ret.get(str).add(i);
     			}else{
-    				ret.put(str, 1);
+    				ArrayList<Integer> posList = new ArrayList<Integer>();
+    				posList.add(i);
+    				ret.put(str, posList);
     			}
     		}
     	}
@@ -103,10 +107,10 @@ public class UrlPraser{
     	UrlPraser praser = new UrlPraser();
     	Result result = new Result("http://en.wikipedia.org/wiki/Bill_Gates","","");
     	
-    	HashMap<String,Integer> content = praser.getWordList(result);
-        Iterator<Map.Entry<String,Integer>> it = content.entrySet().iterator();
+    	HashMap<String,ArrayList<Integer>> content = praser.getWordList(result);
+        Iterator<Map.Entry<String,ArrayList<Integer>>> it = content.entrySet().iterator();
         while (it.hasNext()) {
-            Map.Entry<String,Integer> pairs = (Map.Entry<String,Integer>)it.next();
+            Map.Entry<String,ArrayList<Integer>> pairs = (Map.Entry<String,ArrayList<Integer>>)it.next();
             System.out.println(pairs.getKey() + " = " + pairs.getValue());
             it.remove(); // avoids a ConcurrentModificationException
         }

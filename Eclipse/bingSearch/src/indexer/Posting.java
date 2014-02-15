@@ -21,6 +21,10 @@ public class Posting {
 	public void addDocToAPosting( PostingNode node){
 		posting.add(node);
 	}
+	
+	public int size(){
+		return posting.size();
+	}
 
 	public ArrayList<PostingNode> getPosting() {
 		return posting;

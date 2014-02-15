@@ -62,32 +62,32 @@ public class IndexCreator {
 			stopWordSet.add(str);
 	}
 
-	public HashMap<String, Posting> createIndex(ArrayList<Result> resultList) {
+	public static HashMap<String, Posting> createIndex(ArrayList<Result> resultList) {
 
 		HashMap<String, Posting> ret = new HashMap<String, Posting>();
 
 		for (Result doc : resultList) {
 			UrlPraser praser = new UrlPraser();
-			HashMap<String, Integer> docWordList = praser.getWordList(doc);
+			HashMap<String, ArrayList<Integer>> docWordList = praser.getWordList(doc);
 
 			// iterate through the whole docWordList, merging with the inverted
 			// file
-			Iterator<Map.Entry<String, Integer>> it = docWordList.entrySet()
+			Iterator<Map.Entry<String, ArrayList<Integer>>> it = docWordList.entrySet()
 					.iterator();
 			while (it.hasNext()) {
-				Map.Entry<String, Integer> pairs = (Map.Entry<String, Integer>) it
+				Map.Entry<String, ArrayList<Integer>> pairs = (Map.Entry<String, ArrayList<Integer>>) it
 						.next();
 				String key = pairs.getKey();
-				Integer val = pairs.getValue();
+				ArrayList<Integer> posList = pairs.getValue();
 				
 				if (!stopWordSet.contains(key)) {//exclude stop word
 					if (ret.containsKey(key)) {
-						PostingNode node = new PostingNode(doc, val);
+						PostingNode node = new PostingNode(doc, posList.size(), posList);
 						ret.get(key).addDocToAPosting(node);
 					} else {
 						Posting posting = new Posting();
 						ret.put(key, posting);
-						PostingNode node = new PostingNode(doc, val);
+						PostingNode node = new PostingNode(doc, posList.size(), posList);
 						posting.addDocToAPosting(node);
 					}
 				}

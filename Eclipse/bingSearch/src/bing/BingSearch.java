@@ -1,8 +1,9 @@
 package bing;
 
+
+import expansionAlgorithm.*;
 import indexer.IndexCreator;
 import indexer.Posting;
-import expansionAlgorithm.*;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -39,8 +40,13 @@ public class BingSearch {
 		String accountKey = "cnLsEsvYTSd+XBWkE4lO7z02Wgh3W14UTAwgJ/JURdc=";
 		double preset = Double.parseDouble("0.9");
 		double precision = preset;
+<<<<<<< HEAD
 		String query = "wow".replaceAll("[^\\p{L}\\p{Z}]", " ").replaceAll("\\s+", " "); // change to any query you like
 		*/
+=======
+		String query = "lol"; // change to any query you like
+		
+>>>>>>> 49b1762d518f5eaa0bd6109f5c3b67555d596c39
 		Scanner scan = new Scanner(System.in);
 
 		while (true) {

@@ -11,9 +11,12 @@
 <fullyQualifiedTypeName name="java.util.HashSet"/>
 <fullyQualifiedTypeName name="java.util.TreeMap"/>
 <fullyQualifiedTypeName name="expansionAlgorithm.rocchio.sortAlgorithm.SortAlgorithm"/>
-<fullyQualifiedTypeName name="bing.Result"/>
 <fullyQualifiedTypeName name="indexer.PostingNode"/>
-<fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="java.util.LinkedList"/>
 <fullyQualifiedTypeName name="java.util.Arrays"/>
+<fullyQualifiedTypeName name="indexer.IndexCreator"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="bing.Result"/>
+<fullyQualifiedTypeName name="expansionAlgorithm.rocchio.Rocchio"/>
+<fullyQualifiedTypeName name="expansionAlgorithm.termProximity.ProximityEval"/>
 </qualifiedTypeNameHistroy>

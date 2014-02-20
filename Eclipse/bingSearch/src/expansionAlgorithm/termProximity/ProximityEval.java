@@ -54,7 +54,7 @@ public class ProximityEval {
 		// the array used to mark the highest score when the expanding terms are
 		// considered individually
 		double[] individual_score = new double[] { 0.0, 0.0 };
-		int[] individual_Add_Pos = new int[] { 0, 0 };
+		int[] individual_Add_Pos = new int[] { queryList.size(), queryList.size() };
 
 		int avgDocLength = 0;
 		int lengthSum = 0;
@@ -131,7 +131,7 @@ public class ProximityEval {
 			// now recalculate the score of the other one
 
 			double maxScore = 0.0;
-			int addPos = 0;
+			int addPos = queryList.size();
 			for (int j = 0; j < queryList.size(); j++) {
 				// the list of docs containing the expanding term
 				ArrayList<PostingNode> expandDocList = index.get(expand[1-addWhich])

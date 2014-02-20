@@ -26,7 +26,7 @@ public class UrlPraser{
 	            BodyTag newsContenTag = (BodyTag) newsContentList.elementAt(0);
 	            builder = builder.append(newsContenTag.getStringText());
 	            
-	            content = builder.toString();  //转换为String 类型。
+	            content = builder.toString();  
 	            if (content != null) {
 	                parser.reset();
 
@@ -83,7 +83,8 @@ public class UrlPraser{
     		String str = wordArr[i].toLowerCase();
     		//don't care single digit, they might be chapter number etc.
     		//don't care single letter either, because they are meaningless
-    		if(!str.matches("\\d{1,2}|\\w{1}")){
+    		
+    		if(!str.matches("\\d{1,2}|\\w{1}|_*")){
     			if(ret.containsKey(str)){
     				ret.get(str).add(i);
     			}else{
@@ -123,7 +124,7 @@ public class UrlPraser{
         Iterator<Map.Entry<String,ArrayList<Integer>>> it = content.entrySet().iterator();
         while (it.hasNext()) {
             Map.Entry<String,ArrayList<Integer>> pairs = (Map.Entry<String,ArrayList<Integer>>)it.next();
-            //System.out.println(pairs.getKey() + " = " + pairs.getValue());
+            System.out.println(pairs.getKey() + " = " + pairs.getValue());
             it.remove(); // avoids a ConcurrentModificationException
         }
     }

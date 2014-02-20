@@ -11,8 +11,10 @@ import bing.Result;
 
 public class Algorithm {
 
-	public static String expandQuery(HashMap<String, Posting> index, String query,ArrayList<Result> results){
+	public static String expandQuery(HashMap<String, Posting> index, String query,ArrayList<Result> results,ArrayList<String> augmentedWords){
 		String expand[] = Rocchio.calBestTwoTerm( index, query, results);
+		for(String str:expand)
+			augmentedWords.add(str);
 		return ProximityEval.orderExpanedQuery(index, expand, query, results);
 	}
 	

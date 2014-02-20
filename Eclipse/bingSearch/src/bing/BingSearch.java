@@ -124,7 +124,15 @@ public class BingSearch {
 
 				// build Inverted File
 				HashMap<String, Posting> index = IndexCreator.createIndex(results);
-				query = Algorithm.expandQuery(index, query, results);
+				ArrayList<String> augmentedWords = new ArrayList<String>();
+				query = Algorithm.expandQuery(index, query, results, augmentedWords);
+				
+				
+				System.out.print("Augmenting by ");
+				for(String str : augmentedWords){
+					System.out.print(str+" ");
+				}
+				System.out.println();
 				// String[] augments = augmentQuery(results);
 
 				// output augmented keywords

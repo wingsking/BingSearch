@@ -34,7 +34,7 @@ public class BingSearch {
 		String accountKey = args[0];
 		double preset = Double.parseDouble(args[1]);
 		double precision = preset;
-		String query = args[2].replaceAll("[^\\p{L}\\p{Z}\\']", " ").replaceAll("\\s+", " ");
+		String query = args[2].replaceAll("[^\\p{L}\\p{Z}]", " ").replaceAll("\\s+", " ");
 		
 		/*
 		String accountKey = "cnLsEsvYTSd+XBWkE4lO7z02Wgh3W14UTAwgJ/JURdc=";
@@ -44,8 +44,7 @@ public class BingSearch {
 		String query = "wow".replaceAll("[^\\p{L}\\p{Z}]", " ").replaceAll("\\s+", " "); // change to any query you like
 		*/
 
-		//chhanges the query term to lower case form
-		query = query.toLowerCase();
+		
 		Scanner scan = new Scanner(System.in);
 
 		while (true) {

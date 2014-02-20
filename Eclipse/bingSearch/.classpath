@@ -2,8 +2,8 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
-	<classpathentry kind="lib" path="/home/kevin/ADB/BingSearch/commons-codec-1.9.jar"/>
-	<classpathentry kind="lib" path="/home/kevin/ADB/BingSearch/htmlparser.jar"/>
-	<classpathentry kind="lib" path="/home/kevin/ADB/BingSearch/org-json.jar"/>
+	<classpathentry kind="lib" path="/home/eric/GitHub/Eclipse/bingSearch/commons-codec-1.9.jar"/>
+	<classpathentry kind="lib" path="/home/eric/GitHub/Eclipse/bingSearch/htmlparser.jar"/>
+	<classpathentry kind="lib" path="/home/eric/GitHub/Eclipse/bingSearch/org-json.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

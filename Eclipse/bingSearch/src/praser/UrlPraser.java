@@ -111,7 +111,7 @@ public class UrlPraser{
         Iterator<Map.Entry<String,ArrayList<Integer>>> it = content.entrySet().iterator();
         while (it.hasNext()) {
             Map.Entry<String,ArrayList<Integer>> pairs = (Map.Entry<String,ArrayList<Integer>>)it.next();
-            System.out.println(pairs.getKey() + " = " + pairs.getValue());
+            //System.out.println(pairs.getKey() + " = " + pairs.getValue());
             it.remove(); // avoids a ConcurrentModificationException
         }
     }

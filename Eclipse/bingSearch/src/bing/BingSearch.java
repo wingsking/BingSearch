@@ -28,18 +28,19 @@ import org.json.*;
 public class BingSearch {
 
 	public static void main(String[] args) throws IOException, JSONException {
+		
+		//get parameters from command line 
+		String accountKey = args[0];
+		double preset = Double.parseDouble(args[1]);
+		double precision = preset;
+		String query = args[2].replaceAll("[^\\p{L}\\p{Z}]", " ").replaceAll("\\s+", " ");
+		
 		/*
-		 * get parameters from command line String accountKey = args[0];
-		 * //"cnLsEsvYTSd+XBWkE4lO7z02Wgh3W14UTAwgJ/JURdc=" double preset =
-		 * Double.parseDouble(args[1]); double precision = preset; String query
-		 * = args[2];
-		 */
-
 		String accountKey = "cnLsEsvYTSd+XBWkE4lO7z02Wgh3W14UTAwgJ/JURdc=";
 		double preset = Double.parseDouble("0.9");
 		double precision = preset;
-		String query = "snow+leopard"; // change to any query you like
-		
+		String query = "wow".replaceAll("[^\\p{L}\\p{Z}]", " ").replaceAll("\\s+", " "); // change to any query you like
+		*/
 		Scanner scan = new Scanner(System.in);
 
 		while (true) {
@@ -65,9 +66,10 @@ public class BingSearch {
 			System.out.println("Total no of results : " + n);
 
 			// if less than 10 results returned, terminate
-			if (n < 10)
+			if (n < 10){
+				System.out.println("Less than 10 Results returned, terminate.");
 				return;
-
+			}
 			System.out
 					.println("Bing Search Results: \n=========================");
 
@@ -96,15 +98,16 @@ public class BingSearch {
 			}
 
 			// if there is no relevant result, terminate
-			if (count == 0)
+			if (count == 0){
+				System.out.println("No relevant results, terminiate.");
 				return;
-
+			}
+			
 			precision = (double) count / n;
 
 			// if desired precision not met
 			if ((precision - preset) < -0.000001) {
-				System.out
-						.println("=========================\nFEEDBACK SUMMARY"
+				System.out.println("=========================\nFEEDBACK SUMMARY"
 								+ "\nQuery: " + query + "\nPrecision: "
 								+ precision
 								+ "\nStill below the desired precision of "
@@ -139,14 +142,9 @@ public class BingSearch {
 	}
 
 	// encode the query to make it url-acceptable, or decode it
-	public static String parseQuery(String s, String t) {
-		if (t.equals("encode")) {
-			if (s.contains(" "))
-				return s.replace(" ", "%20");
-		} else if (t.equals("decode")) {
-			if (s.contains("%20"))
-				return s.replace("%20", " ");
-		}
+	public static String parseQuery(String s) {
+		if (s.contains(" "))
+			return s.replaceAll(" ", "%20");
 		return s;
 	}
 
@@ -154,7 +152,7 @@ public class BingSearch {
 	public static String getContent(String accountKey, double precision,
 			String query) throws IOException {
 		// need to encode query with URL-style
-		String encodeQuery = parseQuery(query, "encode"); // "gates microsoft"
+		String encodeQuery = parseQuery(query); // "gates microsoft"
 															// ->
 															// "gates%20microsoft"
 

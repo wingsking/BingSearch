@@ -23,7 +23,8 @@ public class ProximityEval {
 		// storing the original query, use linked list to easily insert expanded
 		// terms
 		LinkedList<String> queryList = new LinkedList<String>(
-				Arrays.asList(query.split("\\+")));
+				Arrays.asList(query.split("\\s+")));
+		
 		/**
 		 * we will examine for every term in the expand term list, consider the
 		 * following: (e1,q1),(q1,e1),(e1,q2),(q2,e1)... which pair is the
@@ -186,7 +187,7 @@ public class ProximityEval {
 		
 		StringBuffer sb = new StringBuffer();
 		for(String str : queryList){
-			sb.append( str+"+");
+			sb.append( str+" ");
 		}
 		sb.deleteCharAt(sb.length()-1);
 		
@@ -220,7 +221,6 @@ public class ProximityEval {
 		// return the normalized score
 		return (k1 + 1)
 				* (sum / (K(avgDocLength, a.getDoc().getLength()) + sum));
-
 	}
 
 	private static double K(int avgLeng, int docLength) {

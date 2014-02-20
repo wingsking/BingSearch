@@ -89,7 +89,7 @@ public class Rocchio {
 							termScore[1] = score;
 							ret[1] = key;
 						}
-						System.out.println(key+":"+score);
+						//System.out.println(key+":"+score);
 					}
 				}
 
@@ -149,7 +149,7 @@ public class Rocchio {
 						ret[1] = key;
 					}
 				}
-				System.out.println(key+":"+score);
+				//System.out.println(key+":"+score);
 			}
 
 		}

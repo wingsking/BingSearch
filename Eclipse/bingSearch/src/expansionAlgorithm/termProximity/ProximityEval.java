@@ -58,10 +58,14 @@ public class ProximityEval {
 
 		int avgDocLength = 0;
 		int lengthSum = 0;
+		int relevantCount = 0;
 		for (Result doc : results) {
-			lengthSum += doc.getLength();
+			if(doc.getRelevant()==true){
+				lengthSum += doc.getLength();
+				relevantCount++;
+			}
 		}
-		avgDocLength = lengthSum / results.size(); // calculate the average doc
+		avgDocLength = lengthSum / relevantCount; // calculate the average doc
 													// length, for normalize
 
 		for (int i = 0; i < expand.length; i++) {

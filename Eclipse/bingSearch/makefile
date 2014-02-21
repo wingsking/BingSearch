@@ -1,6 +1,6 @@
 all: run
 run: run.sh
-	./run.sh $(accountkey) $(precision) "$(query)"
+	./run.sh $(ACCOUNT) $(PRECISION) "$(QUERY)"
 clean:
 	rm -r bin
 

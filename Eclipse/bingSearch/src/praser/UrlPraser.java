@@ -77,7 +77,7 @@ public class UrlPraser {
 		// now generate the word list
 		HashMap<String, ArrayList<Integer>> ret = new HashMap<String, ArrayList<Integer>>();
 
-		String[] wikiIgnores = new String[] { "retrieved", "archived", "original",
+		String[] wikiIgnores = new String[] { "retrieved", "archived",
 				"january", "february", "march", "april", "may", "june", "july",
 				"august", "september", "october", "november", "december" };
 		HashSet<String> wikipediaIgnore = new HashSet<String>(

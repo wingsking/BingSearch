@@ -19,7 +19,7 @@ public class ProximityEval {
 	 * this method return the best ordered query
 	 */
 	public static String orderExpanedQuery(HashMap<String, Posting> index,
-			String[] expand, String query, ArrayList<Result> results) {
+			String[] expand, String query, ArrayList<Result> results) throws RuntimeException{
 		// storing the original query, use linked list to easily insert expanded
 		// terms
 		LinkedList<String> queryList = new LinkedList<String>(
@@ -47,7 +47,7 @@ public class ProximityEval {
 		 * similar to BM25, we use the following formula: W_Normalized(a,b) =
 		 * (k1+1)*(sum(w(a,b)))/(K+sum(w(a,b)))
 		 * 
-		 * K here, like in BM25, is K = k1*(1-b+b*docLength/avgLeng）
+		 * K here, like in BM25, is K = k1*(1-b+b*docLength/avgLength)
 		 * 
 		 */
 

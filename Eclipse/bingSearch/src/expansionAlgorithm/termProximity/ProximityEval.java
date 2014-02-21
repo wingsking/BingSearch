@@ -89,7 +89,7 @@ public class ProximityEval {
 							expandDoc = exDoc;
 					}
 
-					if (expandDoc != null) {
+					if (expandDoc != null && expandDoc.getDoc().getRelevant()==true) {
 						// we only calculate the score when both query term and
 						// expand term
 						// is present, otherwise the score is 0, so don't bother
